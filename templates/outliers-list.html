@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+    <ul class="menu">
+        <li><a href="/">home</a></li>
+        <li><a href="/data-upload">data upload</a></li>
+        <li class="active"><a href="/outliers">outliers analysis</a></li>
+    </ul>
+    <h1>Outliers Results</h1>
+    <ul class="outliers">
+        {% for n in outliers_list %}
+            {% if nested %}
+                <li>{{ n[0] }} {{ n[1] }}</li>
+            {% else %}
+                <li>{{n}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>

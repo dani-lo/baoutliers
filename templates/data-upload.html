@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+    <ul class="menu">
+        <li><a href="/">home</a></li>
+        <li class="active"><a href="/data-upload"   >data upload</a></li>
+        <li><a href="/outliers">outliers analysis</a></li>
+    </ul>
+    <h1>Data Upload (csv or json)</h1>
+    {% if message %}
+        <h2 class="message">{{message}}</h2>
+    {% endif %}
+
+    <form action="/data-upload" method="POST" enctype="multipart/form-data">
+
+        <label for="user_file">Choose Your File</label>
+        <br></br>
+        <input type="file" name="user_file">
+        <br></br>
+        <button type="submit">Upload</button>
+
+    </form>
+
+</body>
+
+</html>

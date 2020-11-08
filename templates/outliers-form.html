@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+    <ul class="menu">
+        <li><a href="/">home</a></li>
+        <li><a href="/data-upload">data upload</a></li>
+        <li class="active"><a href="/outliers">outliers analysis</a></li>
+    </ul>
+    <h1>Select Outliers Parameters</h1>
+    <form action="/outliers" method="POST">
+        <div class="formrow">
+            <label for="algo"><em>Outlier Algorithm</em></label>
+             <select name="algo">
+                <option value="threesigma">Three Sigma</option>
+                <option value="mad">MAD</option>
+                <option value="boxplot">Boxplot</option>
+            </select>
+        </div>
+        <div class="formrow">
+            <label for="input_file"><em>Data Input file</em></label>
+            <select name="input_file">
+                {% for n in files_list %}
+                <li>{{n.Key}}</li>
+                <option value={{n.Key}}>{{n.Key}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="formrow">
+            <label for="nstd"><em>Standard Deviations</em> (not needed for Boxplot algo)</label>
+            <input type="text" name="nstd">
+        </div>
+        <div class="formrow">
+            <label for="metric_column"><em>Metric Column </em>(or metric value field, for json)</label>
+            <input type="text" name="metric_column">
+        </div>
+        <div class="formrow">
+            <label for="label_field"><em>Json Label field</em> (json only)</label>
+            <input type="text" name="label_field">
+        </div>
+        <button type="submit">Analyse</button>
+    </form>
+</body>
+</html>
