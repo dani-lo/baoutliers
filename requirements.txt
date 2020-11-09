@@ -3,3 +3,4 @@ boto3
 flask
 Werkzeug
 python-dotenv
+    
