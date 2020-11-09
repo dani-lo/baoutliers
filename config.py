@@ -6,7 +6,7 @@ class Config:
     S3_SECRET                 = os.environ['S3_SECRET']
     S3_LOCATION               = 'http://{}.s3.amazonaws.com/'.format(S3_BUCKET)
 
-    APP_DATA                  = '/var/www/ba-outliers/data/' if os.environ['APP_ENV'] == 'production' else '/home/dani/Documents/projects/outliers/testrun/data/'
+    APP_DATA                  = '/var/www/outliers/testrun/data/' if os.environ['APP_ENV'] == 'production' else '/home/dani/Documents/projects/outliers/testrun/data/'
     SECRET_KEY                = os.urandom(32)
     DEBUG                     = True
     PORT                      = 5000
