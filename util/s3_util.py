@@ -15,6 +15,8 @@ def list_files_from_s3(bucket_name, s3_client):
 
     try:
         file_list = s3_client.list_objects(Bucket=bucket_name)
+        print('------------------------------------')
+        print(file_list)
         return file_list
 
     except Exception as e:
