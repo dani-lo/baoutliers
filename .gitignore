@@ -27,4 +27,4 @@ mem
 data/*
 !data/.gitkeep 
 deploy
-setup.txt
+env.txt

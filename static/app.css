@@ -195,7 +195,7 @@ h2.message {
 
 ul.outliers {
     margin: 0;
-    padding: 1em;
+    padding: 0;
 }
 
 ul.outliers li {
@@ -204,7 +204,7 @@ ul.outliers li {
     border: 2px dotted #3b5e7c;
     color: #3b5e7c;
     padding: 0.4em 1em;
-    margin: 0.2em;
+    margin: 0.2em 0.2em 0.2em 0;
     width: 120px;
     text-align: center;
 }
