@@ -2,9 +2,9 @@ import csv
 import json
 import codecs
 
-def upload_file_to_s3(file, bucket_name, s3client):
+def upload_file_to_s3(file, bucket_name, s3_client):
     try:
-        s3client.upload_fileobj(
+        s3_client.upload_fileobj(
             file,
             bucket_name,
             file.filename
