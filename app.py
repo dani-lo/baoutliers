@@ -22,10 +22,7 @@ s3_client = boto3.client(
 
 @app.route("/")
 def index():
-
     return render_template("index.html")
-
-print(os.environ['PYTHONPATH'])
 
 @app.route("/data-upload")
 def upload_form():
