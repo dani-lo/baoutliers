@@ -5,12 +5,11 @@ from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
 from outliers.testrun.util.allowed_file import  allowed_file
-from outliers.testrun.util.s3_util import upload_file_to_s3, list_files_from_s3, get_s3_file, read_s3_csv_column, read_s3_json_column
+from outliers.testrun.util.s3_util import upload_file_to_s3, list_files_from_s3, read_s3_csv_column, read_s3_json_column
 
 from outliers.testrun.algos.boxplot import boxplot_csv_column, boxplot_json
 from outliers.testrun.algos.three_sigma import three_sigma_csv_column, three_sigma_json
 from outliers.testrun.algos.mad import mad_csv_column, mad_json
-
 
 app = Flask(__name__)
 app.config.from_object("config.Config")
@@ -69,10 +68,6 @@ def outliers_results():
     input_file = request.form.get('input_file')
     nstd = request.form.get('nstd')
     label_field = request.form.get('label_field')
-
-    get_s3_file(input_file, app.config['APP_DATA'],  app.config["S3_BUCKET"], s3_client)
-
-    file_path = app.config['APP_DATA'] + input_file
 
     if (input_file.find('csv') != -1):
 

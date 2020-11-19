@@ -26,15 +26,6 @@ def list_files_from_s3(bucket_name, s3_client):
         print("Something Happened: ", e)
         return e
 
-def get_s3_file (key, data_path, bucket_name, s3_client) :
-    local_file = data_path + key
-
-    try:
-        s3_client.download_file(Bucket=bucket_name, Key = key, Filename = local_file)
-    except Exception as e:
-        print("Something Happened: ", e)
-        return e
-
 def read_s3_csv_column (key, bucket_name, s3_client, metric_name) :
 
     try:
