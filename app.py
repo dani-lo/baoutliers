@@ -6,10 +6,13 @@ from werkzeug.utils import secure_filename
 
 from outliers.testrun.util.allowed_file import  allowed_file
 from outliers.testrun.util.s3_util import upload_file_to_s3, list_files_from_s3, read_s3_csv_column, read_s3_json_column
+from outliers.testrun.util.plot import boxplot_plotter_image
 
 from outliers.testrun.algos.boxplot import boxplot_csv_column, boxplot_json
 from outliers.testrun.algos.three_sigma import three_sigma_csv_column, three_sigma_json
 from outliers.testrun.algos.mad import mad_csv_column, mad_json
+
+
 
 app = Flask(__name__)
 app.config.from_object("config.Config")
@@ -73,12 +76,16 @@ def outliers_results():
         if algo == 'mad':
 
             outliers_datapoints = mad_csv_column(mdata, int(nstd))
+
             return render_template("outliers-list.html", outliers_list=outliers_datapoints)
         elif algo == 'boxplot':
             outliers_datapoints = boxplot_csv_column(mdata)
-            return render_template("outliers-list.html", outliers_list=outliers_datapoints)
+            plot_img = boxplot_plotter_image(mdata)
+
+            return render_template("outliers-list.html", outliers_list=outliers_datapoints, plot_image=plot_img)
         else :
             outliers_datapoints = three_sigma_csv_column(mdata, int(nstd))
+
             return render_template("outliers-list.html", outliers_list=outliers_datapoints)
     else :
 

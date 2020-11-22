@@ -14,8 +14,15 @@
     <h1>Outliers Detector</h1>
 
 <h3>Intro</h3>
+    <h4>Important</h4>
+    <p>No error handling implemented. On wrong inputs the app might break with a 5000</p>
+    <p>Make sure you:</p>
+    <ul>
+        <li>Upload files in the <em>correct format</em></li>
+        <li>Data is <em>clean</em>, i.e no nulls empty cells etc</li>
+        <li>You select the <em>correct parameters</em> in the Analysis part. For example omitting to indicate the number of standard deviations when using 3 Sigma or MAD algorithms will throw a 5000. And sao other combinations (i.e a wrong metric or label column name)</li>
+    </ul>
 <p>URL is http://52.32.194.167</p>
-
 <p>This is not served through SSL! the security group has IP based rules for both ssh and http so that should be safe, up to you how much detail to expose in the data, I would imagine best to prepare your sets so as not to have any client detail. </p>
 
 <p>If you would like to access pls let m have ur IPv4 address and I will add a rule to the security group</p>
@@ -56,9 +63,7 @@ Cpc,Impressions,Visits<br />
 <h4>JSON</h4>
 
 <p>for json files, the system expects the file to have a json property for the metric to analyse, and a json property for the label to report back the result for each value.</p>
-
     <p>-example JSON</p>
-
 <blockquote>
 
 [<br />
@@ -81,24 +86,26 @@ Cpc,Impressions,Visits<br />
 <p>The analysis parameters are as folowing</p>
 
 <h4>Outlier Algorithm</h4>
-
+<h5>Mandatory, defaulted</h5>
 <p>Seledt one of 3 algos popular for monovariate outliers analyses.</p>
 
 <h4>Data Input file</h4>
-
+<h5>Mandatory, defaulted</h5>
 <p>The input file for the analysis, either a json or csv file. You need to upload the file first. Some of the parameters to follow will apply differently depending if csv or json</p>
 
 <h4>Standard Deviations (not needed for Boxplot algo)</h4>
-
+<h5>Mandatory for 3 Sigma and MAD. Ignored for Boxplot</h5>
 <p>Needed for MAD and Three Sigma Rule algos, not for Boxplot algo (value will be ignored if Boxplot selected). This represents the base standard deviations (or means, depending ..) used to spot the outliers. Boxplot uses a fixed algorithm based on quartiles and a 1.5 multiplier of Q3 - Q1 (standard)</p>
 
 <h4>Metric Column (or metric value field, for json)</h4>
-
+<h5>Mandatory. Value must match a column title (csv) or property (json) in corresponding file</h5>
 <p>JSON   this will be the property in the json object which holds the metric data you want to analyse .. in the example above for JSON, this would be 'somemetric' (note quotes not needed!)</p>
 
 <p>CSV    this will be the column name where you store metric data to analyse. In the CSV example above this couyld be 'CPC' or 'Visits' or 'Impressions'(note quotes not needed!)5 :: Json Label field (json only)JSON ONLY if using a json file, you need to tell the system what is the label property on the json file. In the JSON example above, this would be 'date'. The reason for this, in json format the system will show you the value of the label at the outlier datpoint.. this is not possible in csv format, where you will just receive a list of values without label</p>
 
-
+<h4>Json Label field (json only)</h4>
+    <h5>Mandatory for JSON files. Ignored for csv files</h5>
+    <p>If using a json file, you need to tell the system what is the label property on the json file. In the JSON example above, this would be 'date'. The reason for this, in json format the system will show you the value of the label at the outlier datpoint.. this is not possible in csv format, where you will just receive a list of values without label</p>
 
 
 

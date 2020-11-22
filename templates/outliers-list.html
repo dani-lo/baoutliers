@@ -12,6 +12,11 @@
         <li class="active"><a href="/outliers">outliers analysis</a></li>
     </ul>
     <h1>Outliers Results</h1>
+    {% if plot_image %}
+        <div class="plot_image">
+            <img src="{{ url_for('static', filename=plot_image) }}" />
+        </div>
+    {% endif %}
     <ul class="outliers">
         {% for n in outliers_list %}
             {% if nested %}

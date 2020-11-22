@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  max-width: 960px;
+  /*max-width: 960px;*/
   margin: 0;
   background: white;
   padding: 2rem;
@@ -37,6 +37,9 @@ h4 {
   margin: 1em 0;
 }
 
+em {
+    font-weight: bold;
+}
 p , li{
 font-family: sans-serif;
   color: #333;
@@ -263,3 +266,13 @@ button {
 input {
     padding: 0.5rem;
 }
+
+.plot_image {
+    margin-bottom: 2em;
+}
+
+.plot_image img {
+
+    padding: 16px 0px 8px;
+}
+
