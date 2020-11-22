@@ -75,7 +75,7 @@ def outliers_results():
             outliers_datapoints = mad_csv_column(mdata, int(nstd))
             return render_template("outliers-list.html", outliers_list=outliers_datapoints)
         elif algo == 'boxplot':
-            outliers_datapoints = boxplot_csv_column(mdata, nstd)
+            outliers_datapoints = boxplot_csv_column(mdata)
             return render_template("outliers-list.html", outliers_list=outliers_datapoints)
         else :
             outliers_datapoints = three_sigma_csv_column(mdata, int(nstd))
@@ -90,7 +90,7 @@ def outliers_results():
             return render_template("outliers-list.html", outliers_list=outliers_datapoints, nested = True)
 
         elif algo == 'boxplot':
-            outliers_datapoints = boxplot_json(mdata, nstd)
+            outliers_datapoints = boxplot_json(mdata)
             return render_template("outliers-list.html", outliers_list=outliers_datapoints)
 
         else :

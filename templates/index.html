@@ -13,6 +13,96 @@
     </ul>
     <h1>Outliers Detector</h1>
 
+<h3>Intro</h3>
+<p>URL is http://52.32.194.167</p>
+
+<p>This is not served through SSL! the security group has IP based rules for both ssh and http so that should be safe, up to you how much detail to expose in the data, I would imagine best to prepare your sets so as not to have any client detail. </p>
+
+<p>If you would like to access pls let m have ur IPv4 address and I will add a rule to the security group</p>
+
+<p>All files are stored in an AWS bucket within a vpc and loaded on demand for analysis. The AWS account and Bucket access details are stored on the server in the wsgi cinfiguration file. </p>
+
+<p>If you want to check out the repo that is https://github.com/dani-lo/baoutliers</p>
+
+<p>NOTE Analysis for now is only in monovariate space</p>
+
+<p>NOTE There are a bunch of files uplodaed to the bucket already, mostly test files. One is a sample web metric data included with the course i was following, then some market price json files (yes I am fiddling with using this for trading) etc.. Give your uploaded files a recognisable name so you can easily spot them in the analysis section dropdown</p>
+
+<h3>Features</h3>
+
+<p>This mini app does the followin</p>
+
+<ul>
+<li>enables you to upload csv or json files to a bucket
+<li>after uploading, enables you to select an uploaded file and run outliers analysis on it
+</ul>
+
+<h3>Files upload</h3>
+
+<p>You can upload files in either csv or Json</p>
+
+<h4>CSV</h4>
+
+<p>for csv files, the system expects the file to have at least one named column containing metric data to be analysed for outliers.</p>
+
+<p>- example CSV</p>
+
+<blockquote>
+Cpc,Impressions,Visits<br />
+2, 234,556<br />
+2.5,344,590<br />
+</blockquote>
+
+<h4>JSON</h4>
+
+<p>for json files, the system expects the file to have a json property for the metric to analyse, and a json property for the label to report back the result for each value.</p>
+
+    <p>-example JSON</p>
+
+<blockquote>
+
+[<br />
+ &nbsp;{<br />
+    &nbsp;&nbsp;date: '12-09-2020',<br />
+    &nbsp;&nbsp;cpc: 123,<br />
+    &nbsp;&nbsp;impressions: 123<br />
+ &nbsp;},<br />
+ &nbsp;{<br />
+    &nbsp;&nbsp;date: '13-09-2020',<br />
+    &nbsp;&nbsp;impressions: 234<br />
+ &nbsp;}<br />
+]
+</blockquote>
+
+<h3>ANALYSIS</h3>
+
+<p>NOTE you will need to upload a file before you can analyse it</p>
+
+<p>The analysis parameters are as folowing</p>
+
+<h4>Outlier Algorithm</h4>
+
+<p>Seledt one of 3 algos popular for monovariate outliers analyses.</p>
+
+<h4>Data Input file</h4>
+
+<p>The input file for the analysis, either a json or csv file. You need to upload the file first. Some of the parameters to follow will apply differently depending if csv or json</p>
+
+<h4>Standard Deviations (not needed for Boxplot algo)</h4>
+
+<p>Needed for MAD and Three Sigma Rule algos, not for Boxplot algo (value will be ignored if Boxplot selected). This represents the base standard deviations (or means, depending ..) used to spot the outliers. Boxplot uses a fixed algorithm based on quartiles and a 1.5 multiplier of Q3 - Q1 (standard)</p>
+
+<h4>Metric Column (or metric value field, for json)</h4>
+
+<p>JSON   this will be the property in the json object which holds the metric data you want to analyse .. in the example above for JSON, this would be 'somemetric' (note quotes not needed!)</p>
+
+<p>CSV    this will be the column name where you store metric data to analyse. In the CSV example above this couyld be 'CPC' or 'Visits' or 'Impressions'(note quotes not needed!)5 :: Json Label field (json only)JSON ONLY if using a json file, you need to tell the system what is the label property on the json file. In the JSON example above, this would be 'date'. The reason for this, in json format the system will show you the value of the label at the outlier datpoint.. this is not possible in csv format, where you will just receive a list of values without label</p>
+
+
+
+
+
+
 
 </body>
 
