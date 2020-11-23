@@ -276,3 +276,6 @@ input {
     padding: 16px 0px 8px;
 }
 
+div.o-form {
+max-width: 950px;
+}
